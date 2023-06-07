@@ -1,5 +1,6 @@
+/node_modules/
 .idea
 *.iml
-out
-gen
-node_modules
+/public/build
+.DS_Store
+/export/
