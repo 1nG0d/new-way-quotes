@@ -5,33 +5,17 @@ import {
   legendAsTooltipPlugin,
   // columnHighlightPlugin,
 } from "./chart-plugins";
-import { xAxesIncrs, xAxesValues } from "./chart-constants";
+import {
+  defaultCandleChartConfig,
+  xAxesIncrs,
+  xAxesValues,
+} from "./chart-constants";
 
 function fmtUSD(val, dec) {
   return "$" + val.toFixed(dec).replace(/\d(?=(\d{3})+(?:\.|$))/g, "$&,");
 }
 
-const defaultCandleChartConfig = {
-  width: 0,
-  height: 0,
-  xAxisSize: 50,
-  yAxisSize: 65,
-  xAxisFont: "10px Arial",
-  yAxisFont: "10px Arial",
-  yAxisDecimalsInFloat: 3,
-  candleGap: 2,
-  candleBearishColor: "#fc3c5f",
-  candleBullishColor: "#48b479",
-  candleMaxWidth: 20,
-  candleShadowWidth: 2,
-  candleOutline: 1,
-  tooltipDateFormat: "{MM}/{DD}/{YYYY} {HH}:{MM}",
-  tooltipDecimalsInFloat: 3,
-  heightToWidthRatio: 0.6,
-  isResizable: true,
-};
-
-export const getCandleChartOptions = ({ min, max, chartConfigs }) => {
+export const getCandleChartConfigs = ({ min, max, chartConfigs }) => {
   const config = { ...defaultCandleChartConfig, ...chartConfigs };
   const fixedMinMax = fixEqualMinMax({ min, max });
   min = fixedMinMax.min;

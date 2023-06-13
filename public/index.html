@@ -59,8 +59,13 @@
   <script>
     const setWidgetOptions = window.setWidgetOptions;
 
+    // EXAMPLE of pair: BTCUSDT
+
     const widgetOptions = {
-      pair: 'ethereum/bitcoin',
+      chartConfigs: {
+        pair: 'BTCUSDT',
+        limit: 100,
+      }
     }
 
     if (window.getApp) {

@@ -31,9 +31,29 @@ export const xAxesValues = [
   [60, "{HH}:{mm}", "\n{M}/{D}/{YY}", null, "\n{M}/{D}", null, null, null, 1],
 ];
 
-export const defaultChartOptions = {
-  symbol: "BTC",
-  limit: "100",
+export const defaultCandleChartConfig = {
+  xAxisSize: 50,
+  yAxisSize: 65,
+  xAxisFont: "10px Arial",
+  yAxisFont: "10px Arial",
+  yAxisDecimalsInFloat: 3,
+  candleGap: 2,
+  candleBearishColor: "#fc3c5f",
+  candleBullishColor: "#48b479",
+  candleMaxWidth: 20,
+  candleShadowWidth: 2,
+  candleOutline: 1,
+  tooltipDateFormat: "{MM}/{DD}/{YYYY} {HH}:{MM}",
+  tooltipDecimalsInFloat: 3,
+  heightToWidthRatio: 0.6,
+  isResizable: true,
+};
+
+export const defaultChartConfigs = {
+  pair: "BTCUSDT",
+  width: 600,
+  height: 300,
+  limit: 100,
 };
 
 export const periodOptions = [

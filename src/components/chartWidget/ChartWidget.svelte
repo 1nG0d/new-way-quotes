@@ -2,27 +2,26 @@
   import uPlot from "uplot";
   import { afterUpdate } from "svelte";
   import { mainStore } from "../../store";
-  import { getCandleChartOptions } from "./chart-configs";
+  import { getCandleChartConfigs } from "./chart-configs";
   import { widgetNames } from "../../constatns/widgetNames";
   import ChartWidgetWrapper from "./ChartWidgetWrapper.svelte";
   import { getMinMaxData } from "./chart-utils";
   import ChartWidgetDateButtons from "./ChartWidgetDateButtons.svelte";
+  import { getChartData } from "./getChartData";
+  import { defaultChartConfigs, periodOptions } from "./chart-constants";
   import "./chartWidget.css";
   import "uplot/dist/uPlot.min.css";
-  import { getChartData } from "./getChartData";
-  import { defaultChartOptions, periodOptions } from "./chart-constants";
 
   export let widgetOptions;
 
-
-  const chartOptions = {...widgetOptions.chartOptions, ...defaultChartOptions};
+  const chartConfigs = { ...defaultChartConfigs, ...widgetOptions.chartConfigs };
   let chartElement;
   let chart;
   let { chartData, chartDataLoading, chartDataError } = {};
   let period = periodOptions[0].id;
 
   $:{
-    getChartData({...chartOptions, period});
+    getChartData({...chartConfigs, period});
   }
 
   mainStore.subscribe((store) => {
@@ -37,13 +36,13 @@
     if (chart) chart.destroy();
 
     const { min, max } = getMinMaxData(chartData);
-    const options = getCandleChartOptions({
+
+    const options = getCandleChartConfigs({
       min,
       max,
-      chartConfigs: { height: 300, width: 600 },
+      chartConfigs,
     });
     chart = new uPlot(options, chartData, chartElement);
-    console.log(">>>", chart);
   };
 
   afterUpdate(async () => {

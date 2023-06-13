@@ -40,14 +40,14 @@ const getOptionToServer = ({ period }) => {
   }
   return { startTime: startTime, endTime: endTime, interval };
 };
-export const getChartData = async ({ symbol, limit, period }) => {
+export const getChartData = async ({ pair, limit, period }) => {
   updateChartWidget({ loading: true });
 
   const { startTime, endTime, interval } = getOptionToServer({ period });
   try {
     await axios
       .get(
-        `https://api.binance.com/api/v3/klines?symbol=${symbol}USDT&interval=${interval}&startTime=${startTime}&endTime=${endTime}&limit=${limit}`
+        `https://api.binance.com/api/v3/klines?symbol=${pair}&interval=${interval}&startTime=${startTime}&endTime=${endTime}&limit=${limit}`
       )
       .then((res) => {
         const data = normalizeApiResponse(res);
