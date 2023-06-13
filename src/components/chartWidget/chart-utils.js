@@ -1,11 +1,11 @@
 import uPlot from "uplot";
 
 const fixEqualMinMax = ({ min, max }) => {
-  if (min == max) {
+  if (min === max) {
     min = Math.floor(min);
     max = Math.ceil(max);
 
-    if (min == max) {
+    if (min === max) {
       max = max + 1;
     }
   }
@@ -18,28 +18,6 @@ const getMinMaxData = (data) => {
   const min = Math.min(...(data[3] || []));
   return { max, min };
 };
-
-const convertApiResponseToChartData = (response) => {
-  const date = [];
-  const open = [];
-  const high = [];
-  const low = [];
-  const close = [];
-  const volume = [];
-
-  response.forEach((quote) => {
-    date.push(quote.period);
-    open.push(quote.open);
-    high.push(quote.high);
-    low.push(quote.low);
-    close.push(quote.close);
-    volume.push(quote.volume);
-  });
-
-  return [date, open, high, low, close, volume];
-};
-
-const fmtDate = uPlot.fmtDate("{YYYY}-{MM}-{DD} {HH}:{MM}");
 const tzDate = (ts) => uPlot.tzDate(new Date(ts), "Etc/UTC");
 
 const capitalizeFirstLetter = (string) =>
@@ -86,12 +64,10 @@ const normalizeApiResponse = (response) => {
 };
 
 export {
-  fmtDate,
   tzDate,
   getMinMaxData,
   fixEqualMinMax,
   getDateTranslates,
   capitalizeFirstLetter,
-  convertApiResponseToChartData,
   normalizeApiResponse,
 };

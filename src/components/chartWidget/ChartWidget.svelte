@@ -43,6 +43,7 @@
       chartConfigs: { height: 300, width: 600 },
     });
     chart = new uPlot(options, chartData, chartElement);
+    console.log(">>>", chart);
   };
 
   afterUpdate(async () => {

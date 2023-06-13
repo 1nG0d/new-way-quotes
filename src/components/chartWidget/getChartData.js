@@ -44,7 +44,6 @@ export const getChartData = async ({ symbol, limit, period }) => {
   updateChartWidget({ loading: true });
 
   const { startTime, endTime, interval } = getOptionToServer({ period });
-  console.log(startTime, interval, endTime);
   try {
     await axios
       .get(

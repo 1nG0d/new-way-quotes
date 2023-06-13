@@ -1,10 +1,11 @@
-## demo https://widget.anoram.com/
+Run ``npm ci`` to install
 
-Clone ``npm install`` 
+**Development mode:**
 
-You need to run both ``npm run dev`` for svelte app.
+Run both ``npm run dev`` and ``npm run start``.
+
+**Production mode:**
+
+Run ``npm run build``.
 
 
-This project uses this [Gemini API](https://api.gemini.com/v1/pricefeed) 
-
-Read the article here

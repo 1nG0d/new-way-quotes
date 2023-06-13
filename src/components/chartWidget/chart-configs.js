@@ -1,11 +1,15 @@
 import uPlot from "uplot";
-import { fixEqualMinMax, tzDate, fmtDate, getDateTranslates } from "./chart-utils";
+import { fixEqualMinMax, tzDate, getDateTranslates } from "./chart-utils";
 import {
   candlestickPlugin,
   legendAsTooltipPlugin,
-  columnHighlightPlugin,
+  // columnHighlightPlugin,
 } from "./chart-plugins";
 import { xAxesIncrs, xAxesValues } from "./chart-constants";
+
+function fmtUSD(val, dec) {
+  return "$" + val.toFixed(dec).replace(/\d(?=(\d{3})+(?:\.|$))/g, "$&,");
+}
 
 const defaultCandleChartConfig = {
   width: 0,
@@ -34,7 +38,7 @@ export const getCandleChartOptions = ({ min, max, chartConfigs }) => {
   max = fixedMinMax.max;
 
   const plugins = [
-    columnHighlightPlugin(),
+    // columnHighlightPlugin(),
     legendAsTooltipPlugin(),
     candlestickPlugin({
       gap: config.candleGap,
@@ -46,20 +50,15 @@ export const getCandleChartOptions = ({ min, max, chartConfigs }) => {
     }),
   ];
 
-  // if (config.isResizable) {
-  //   plugins.push(resize({ heightToWidthRatio: config.heightToWidthRatio }));
-  // }
-
   return {
     width: config.width,
     height: config.height,
     tzDate,
-    // fmtDate: (tpl) => (date) => {
-    //   console.log(">>>", date);
-    //   return !isNaN(date.getTime())
-    //     ? uPlot.fmtDate(tpl, getDateTranslates())(date)
-    //     : "";
-    // },
+    fmtDate: (tpl) => (date) => {
+      return !isNaN(date.getTime())
+        ? uPlot.fmtDate(tpl, getDateTranslates())(date)
+        : "";
+    },
     plugins: plugins,
     scales: {
       x: { distr: 2 },
@@ -68,26 +67,27 @@ export const getCandleChartOptions = ({ min, max, chartConfigs }) => {
     series: [
       {
         label: "Date",
-        value: (u, ts) => console.log("Date", ts) || fmtDate(tzDate(ts)),
-        // uPlot.fmtDate(config.tooltipDateFormat)(tzDate(ts)),
+        value: (u, ts) => uPlot.fmtDate(config.tooltipDateFormat)(tzDate(ts)),
       },
       {
         label: "Open",
         value: (u, value) =>
-          console.log("Open", value, u) ||
-          value.toFixed(config.tooltipDecimalsInFloat),
+          value ? value.toFixed(config.tooltipDecimalsInFloat) : null,
       },
       {
         label: "High",
-        value: (u, value) => value.toFixed(config.tooltipDecimalsInFloat),
+        value: (u, value) =>
+          value ? value.toFixed(config.tooltipDecimalsInFloat) : null,
       },
       {
         label: "Low",
-        value: (u, value) => value.toFixed(config.tooltipDecimalsInFloat),
+        value: (u, value) =>
+          value ? value.toFixed(config.tooltipDecimalsInFloat) : null,
       },
       {
         label: "Close",
-        value: (u, value) => value.toFixed(config.tooltipDecimalsInFloat),
+        value: (u, value) =>
+          value ? value.toFixed(config.tooltipDecimalsInFloat) : null,
       },
       {
         label: "Volume",
@@ -102,7 +102,6 @@ export const getCandleChartOptions = ({ min, max, chartConfigs }) => {
         values: xAxesValues,
       },
       {
-        side: 1,
         size: config.yAxisSize,
         font: config.yAxisFont,
         values: (self, ticks) =>

@@ -24,9 +24,9 @@ export const xAxesIncrs = [
 
 export const xAxesValues = [
   // tick incr        default        year               month    day            hour     min      sec    mode
-  [3600 * 24 * 365, "{YYYY}", null, null, null, null, null, null, 1],
-  [3600 * 24 * 28, "{MMM}", "\n{YYYY}", null, null, null, null, null, 1],
-  [3600 * 24, "{M}/{D}", "\n{YYYY}", null, null, null, null, null, 1],
+  // [3600 * 24 * 365, "{YYYY}", null, null, null, null, null, null, 1],
+  // [3600 * 24 * 28, "{MMM}", "\n{YYYY}", null, null, null, null, null, 1],
+  // [3600 * 24, "{M}/{D}", "\n{YYYY}", null, null, null, null, null, 1],
   [3600, "{HH}:{mm}", "\n{M}/{D}/{YY}", null, "\n{M}/{D}", null, null, null, 1],
   [60, "{HH}:{mm}", "\n{M}/{D}/{YY}", null, "\n{M}/{D}", null, null, null, 1],
 ];
