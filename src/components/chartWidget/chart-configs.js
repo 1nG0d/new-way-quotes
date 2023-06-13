@@ -86,6 +86,7 @@ export const getCandleChartConfigs = ({ min, max, chartConfigs }) => {
         values: xAxesValues,
       },
       {
+        side: config.side,
         size: config.yAxisSize,
         font: config.yAxisFont,
         values: (self, ticks) =>

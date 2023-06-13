@@ -47,6 +47,7 @@ export const defaultCandleChartConfig = {
   tooltipDecimalsInFloat: 3,
   heightToWidthRatio: 0.6,
   isResizable: true,
+  side: 3, // label on the left side near yAxis
 };
 
 export const defaultChartConfigs = {

@@ -51,7 +51,6 @@
 </script>
 
 <div class="chart-widget">
-  <h3>Chart widget</h3>
   <ChartWidgetDateButtons bind:period />
   <ChartWidgetWrapper {chartDataLoading} {chartDataError}>
     {#key period}
